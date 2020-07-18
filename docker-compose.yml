@@ -1,0 +1,15 @@
+version: "3" # version of docker-compose (latest available)
+
+services:
+  # Our python project
+  app:
+    build:
+      # docker-compose file is here
+      context: .  # our current directory
+    ports:
+      - "8000:8000"
+    # if any local changes in the project then it will be automatically reflect back to our docker image
+    volumes:
+      - ./app:/app
+    command: >  # if many lines are there
+      sh -C "python manage.py runserver 0.0.0.0:8000"
